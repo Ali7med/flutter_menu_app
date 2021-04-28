@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_menu_app/controller/userController.dart';
-import 'package:flutter_menu_app/models/user/user.dart';
+import 'package:flutter_menu_app/models/user/userDate.dart';
 
  class IUser extends StatefulWidget {
    @override
@@ -99,7 +99,9 @@ Widget _drawUser(BuildContext context, List<User> users) {
             subtitle: Text(users[position].email),
             trailing: IconButton(
               icon: Icon(Icons.favorite_border),
-              onPressed: () async {},
+              onPressed: () async {
+
+              },
             ),
           ),
         ),

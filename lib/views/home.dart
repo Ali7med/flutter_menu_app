@@ -126,7 +126,7 @@ Widget _drawUser(BuildContext context, List<User1> users) {
 Future<List<User1>> getDate({page}) async{
   List<User1> users=[];
   UserController _userController = UserController(UserAPI());
-  try{print(1);
+  try{
      var data= _userController.getUsers(page : page) ;
      return data;
   }catch(ex){
