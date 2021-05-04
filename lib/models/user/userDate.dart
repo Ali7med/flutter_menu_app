@@ -3,10 +3,12 @@ class User{
   String name,email,type;
 
   User(this.id, this.name, this.email, this.type);
-    User.fromJson(Map <String,dynamic> map) {
-    this.id=map['id'];
-    this.name=map['name'];
-    this.email=map['email'];
-    this.type=map['type'];
+
+
+    User.fromJson(Map <String,dynamic> x) {
+    this.id=x['id'];
+    this.name=x['name'];
+    this.email=x['email'];
+    this.type=x['type'];
   }
 }
