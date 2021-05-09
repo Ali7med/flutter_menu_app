@@ -1,20 +1,18 @@
 import 'dart:convert';
 
-import 'package:flutter_menu_app/Utilities/utilities.dart';
+import 'package:flutter_menu_app/models/api/utilitiesApi.dart';
+import 'package:flutter_menu_app/models/user/RegisterDTO.dart';
 import 'package:flutter_menu_app/models/user/loginDTO.dart';
 import 'package:flutter_menu_app/models/user/loginResponse.dart';
+import 'package:flutter_menu_app/utilities/utilities.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: camel_case_types
-class userApi {
-
+class UserApi {
   Future getUser() async {
-    SharedPreferences _perf=await SharedPreferences.getInstance();
-    
-    String _accessToken = _perf.getString('access_token');
-    if(_accessToken==null) return null;
-    Uri url = Uri.parse(Utilites.GetUsers);
+    String _accessToken = await Utilities.getAccessToken();
+    if (_accessToken == null) return '403';
+    Uri url = Uri.parse(UtilitiesApi.GetUsers);
     Map<String, String> header = {
       'Accept': 'application/json',
       'Authorization': 'Bearer ' + _accessToken
@@ -37,10 +35,10 @@ class userApi {
 
   // ignore: missing_return
   Future<LoginResponse> login(LoginDTO loginDTO) async {
-    String _path = Utilites.LoginUrl +
+    String _path = UtilitiesApi.LoginUrl +
         '?email=' +
         loginDTO.email +
-        '&&password=' +
+        '&password=' +
         loginDTO.password;
     Uri url = Uri.parse(_path);
     Map<String, String> header = {'Accept': 'application/json'};
@@ -55,14 +53,28 @@ class userApi {
   }
 
   // ignore: missing_return
-  Future<bool> logout() async {
-    SharedPreferences _perf=await SharedPreferences.getInstance();
-    try{
-      _perf.remove('access_token');
-      return true;
-    }catch(e){
-      print(e.toString());
-      return false;
+  Future<LoginResponse> register(RegisterDTO registerDTO) async {
+    String _path = UtilitiesApi.RegisterUrl +
+        '?name=' +
+        registerDTO.name +
+        '?email=' +
+        registerDTO.email +
+        '&password=' +
+        registerDTO.password;
+    Uri url = Uri.parse(_path);
+    Map<String, String> header = {'Accept': 'application/json'};
+    http.Response _response = await http.get(url, headers: header);
+    if (_response.statusCode == 200) {
+      var result = jsonDecode(_response.body);
+      return LoginResponse(
+          result['ID'], result['Name'], result['access_token']);
+    } else if (_response.statusCode == 401) {
+      return null;
     }
+  }
+
+  // ignore: missing_return
+  Future<bool> logout() async {
+    return Utilities.removeKey('access_token');
   }
 }

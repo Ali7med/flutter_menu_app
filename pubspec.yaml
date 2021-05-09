@@ -34,6 +34,8 @@ dependencies:
   shared_preferences: ^2.0.5
   multiple_screens: ^0.2.0
   split_view: ^2.0.1+2
+  connectivity: ^3.0.3
+
 
 dev_dependencies:
   flutter_test:

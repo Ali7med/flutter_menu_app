@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_menu_app/controller/userController.dart';
-import 'package:flutter_menu_app/models/user/userDate.dart';
-import 'package:flutter_menu_app/views/utilites/DrawerPage.dart';
+import 'package:flutter_menu_app/models/user/userData.dart';
+import 'package:flutter_menu_app/views/utilities/DrawerPage.dart';
 
 class IUser extends StatefulWidget {
   @override
@@ -89,15 +89,15 @@ Widget _drawUser(BuildContext context, List<User> users) {
   return ListView.builder(
       scrollDirection: Axis.vertical,
       itemCount: users.length,
-      itemBuilder: (BuildContext context, int position) {
+      itemBuilder: (BuildContext context, int index) {
         return Card(
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 10),
             child: ListTile(
               onTap: () {},
-              leading: Text(users[position].id.toString()),
-              title: Text(users[position].name),
-              subtitle: Text(users[position].email),
+              leading: Text(users[index].id.toString()),
+              title: Text(users[index].name),
+              subtitle: Text(users[index].email),
               trailing: IconButton(
                 icon: Icon(Icons.favorite_border),
                 onPressed: () async {},
