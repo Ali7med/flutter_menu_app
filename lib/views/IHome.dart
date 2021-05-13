@@ -20,11 +20,6 @@ class _IHomeState extends State<IHome> {
   @override
   void initState() {
     super.initState();
-    var name = Utilities.getUserName();
-    if (UserController.getUserName() == null)
-      UserController.setUserName(name: name.toString());
-
-
     WidgetsBinding.instance.addPostFrameCallback(
         (_) => showInSnackBar('welcome ' + UserController.getUserName()));
   }
