@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_menu_app/controller/languageController.dart';
 import 'package:flutter_menu_app/controller/userController.dart';
 import 'package:flutter_menu_app/models/language/languageData.dart';
-import 'package:flutter_menu_app/utilities/utilities.dart';
 import 'package:flutter_menu_app/views/ICategory.dart';
 import 'package:flutter_menu_app/views/ILogin.dart';
 import 'package:flutter_menu_app/views/utilities/DrawerPage.dart';
