@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_menu_app/controller/userController.dart';
 import 'package:flutter_menu_app/models/user/userData.dart';
+import 'package:flutter_menu_app/views/utilities/AppBarPage.dart';
 import 'package:flutter_menu_app/views/utilities/DrawerPage.dart';
 
 class IUser extends StatefulWidget {
@@ -15,13 +16,9 @@ class _IUserState extends State<IUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Users'),
-      ),
+      appBar: makeAppBar(context, 'Users'),
+      drawer: makeDrawer(context),
       body: contentWidget(context, _userController),
-      drawer: Drawer(
-        child: DrawerPage(),
-      ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: Container(height: 50.0),

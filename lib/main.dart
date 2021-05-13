@@ -4,21 +4,23 @@ import 'package:flutter_menu_app/views/IHome.dart';
 import 'package:flutter_menu_app/views/ILogin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'controller/userController.dart';
+
 
  void  main() async {
    WidgetsFlutterBinding.ensureInitialized();
-  // ignore: non_constant_identifier_names
-  Widget Home;
+  Widget _home;
   SharedPreferences _prefs = await SharedPreferences.getInstance();
-  // ignore: non_constant_identifier_names
-  final String AccessToken=_prefs.getString(Utilities.Access_token);
-  if(AccessToken==null){
-    Home=ILogin();
-
+  final String _accessToken=_prefs.getString("access_token");
+  if(_accessToken==null){
+    _home=ILogin();
   }else{
-    Home=IHome();
+    _home=IHome();
+     Utilities.getUserName();
+     Utilities.getUserID();
+     Utilities.getAccessToken();
   }
-  runApp(App(Home));
+  runApp(App(_home));
 }
 
 // ignore: must_be_immutable

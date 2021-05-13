@@ -12,12 +12,7 @@ class UserApi {
   Future getUser() async {
     String _accessToken = await Utilities.getAccessToken();
     if (_accessToken == null) return '403';
-    Uri url = Uri.parse(UtilitiesApi.GetUsers);
-    Map<String, String> header = {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + _accessToken
-    };
-    http.Response response = await http.get(url, headers: header);
+    http.Response response = await  UtilitiesApi.makeRequest(path: UtilitiesApi.GetUsers , bearer: _accessToken);
     switch (response.statusCode) {
       case 200:
       case 201:
@@ -40,10 +35,8 @@ class UserApi {
         loginDTO.email +
         '&password=' +
         loginDTO.password;
-    Uri url = Uri.parse(_path);
-    Map<String, String> header = {'Accept': 'application/json'};
-    http.Response _response = await http.get(url, headers: header);
-    if (_response.statusCode == 200) {
+    http.Response _response = await UtilitiesApi.makeRequest(path:_path);
+        if (_response.statusCode == 200) {
       var result = jsonDecode(_response.body);
       return LoginResponse(
           result['ID'], result['Name'], result['access_token']);
@@ -61,9 +54,7 @@ class UserApi {
         registerDTO.email +
         '&password=' +
         registerDTO.password;
-    Uri url = Uri.parse(_path);
-    Map<String, String> header = {'Accept': 'application/json'};
-    http.Response _response = await http.get(url, headers: header);
+    http.Response _response = await UtilitiesApi.makeRequest(path:_path);
     if (_response.statusCode == 200) {
       var result = jsonDecode(_response.body);
       return LoginResponse(

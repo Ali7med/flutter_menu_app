@@ -4,7 +4,10 @@ import 'package:flutter_menu_app/controller/categoryController.dart';
 import 'package:flutter_menu_app/models/category/category.dart';
 import 'package:flutter_menu_app/models/language/languageData.dart';
 import 'package:flutter_menu_app/views/IItem.dart';
+import 'package:flutter_menu_app/views/utilities/AppBarPage.dart';
 import 'package:flutter_menu_app/views/utilities/DrawerPage.dart';
+
+import 'IHome.dart';
 
 class ICategory extends StatefulWidget {
   final Language language;
@@ -26,18 +29,8 @@ class _ICategoryState extends State<ICategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        title: Text("Category"),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
-      drawer: Drawer(
-        child: DrawerPage(),
-      ),
+      appBar: makeAppBar(context, 'Category'),
+      drawer: makeDrawer(context),
       body: page(context),
     );
   }
