@@ -94,7 +94,7 @@ class _DrawerPageState extends State<DrawerPage> {
 
 
 
- Drawer  MakeDrawer(BuildContext context)   {
+ Drawer  makeDrawer(BuildContext context)   {
   UserController _userController = UserController();
   var  islogin=_userController.isLogin()  ;
 

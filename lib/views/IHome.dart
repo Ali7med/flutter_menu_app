@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_menu_app/controller/languageController.dart';
 import 'package:flutter_menu_app/controller/userController.dart';
 import 'package:flutter_menu_app/models/language/languageData.dart';
-import 'package:flutter_menu_app/utilities/utilities.dart';
 import 'package:flutter_menu_app/views/ICategory.dart';
 import 'package:flutter_menu_app/views/ILogin.dart';
 import 'package:flutter_menu_app/views/utilities/DrawerPage.dart';
@@ -19,20 +18,20 @@ class _IHomeState extends State<IHome> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    var name=Utilities.getUserName();
-    WidgetsBinding.instance.addPostFrameCallback((_) => showInSnackBar('welcome '+name.toString()));
+    WidgetsBinding.instance.addPostFrameCallback(
+        (_) => showInSnackBar('welcome ' + UserController.getUserName()));
   }
 
   @override
   Widget build(BuildContext context) {
+    // TODO : do than
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
         title: Text("Home"),
       ),
-      drawer: MakeDrawer(context),
+      drawer: makeDrawer(context),
       body: page(context),
     );
   }
@@ -95,13 +94,13 @@ class _IHomeState extends State<IHome> {
   }
 
   void showInSnackBar(String value) {
-    scaffoldKey.currentState.showSnackBar(new SnackBar(
-      content: new Text(value),
-      backgroundColor: Colors.orange,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      padding: EdgeInsets.symmetric(horizontal: 8.0),
-      // Inner padding for SnackBar content.
-      behavior: SnackBarBehavior.floating,
+    scaffoldKey.currentState.showSnackBar(
+        new SnackBar(
+              content: new Text(value),
+              backgroundColor: Colors.orange,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              behavior: SnackBarBehavior.floating,
     ));
   }
 }

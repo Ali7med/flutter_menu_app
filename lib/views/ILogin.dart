@@ -34,6 +34,7 @@ class _ILoginState extends State<ILogin> {
     );
   }
 
+
   Widget Page() {
     return SingleChildScrollView(
         child: Container(
@@ -83,7 +84,8 @@ class _ILoginState extends State<ILogin> {
           return "Must to enter Email";
         }
         Pattern pattern =
-            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@'
+            r'((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
         RegExp regex = new RegExp(pattern);
         return (!regex.hasMatch(email)) ? 'Please enter valid email !' : null;
       },
@@ -153,7 +155,7 @@ class _ILoginState extends State<ILogin> {
         style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
       ),
       onPressed: () async {
-        if (_form.currentState.validate()) {
+        if (_form.currentState.validate()){
           _isLoading.value = true;
           _messageError.value = '';
           try {

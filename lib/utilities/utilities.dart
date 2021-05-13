@@ -1,3 +1,4 @@
+import 'package:flutter_menu_app/controller/userController.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Utilities{
@@ -10,17 +11,20 @@ static const String Access_ID="user_id";
 static Future<String> getAccessToken() async {
   SharedPreferences _perf=await SharedPreferences.getInstance();
   String _accessToken = _perf.getString(Utilities.Access_token);
+  UserController.setUserAccessToken(accessToken:_accessToken );
   return _accessToken;
 }
 static Future<String> getUserName() async {
   SharedPreferences _perf=await SharedPreferences.getInstance();
-  String _accessToken = _perf.getString(Utilities.Access_Name);
-  return _accessToken;
+  String _userName = _perf.getString(Utilities.Access_Name);
+  UserController.setUserName(name: _userName);
+  return _userName;
 }
 static Future<String> getUserID() async {
   SharedPreferences _perf=await SharedPreferences.getInstance();
-  String _accessToken = _perf.getString(Utilities.Access_ID);
-  return _accessToken;
+  String _user_id = _perf.getString(Utilities.Access_ID);
+  UserController.setUserID( id:  _user_id);
+  return _user_id;
 }
 
 static Future<bool> storeKey(key,value) async{
