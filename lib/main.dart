@@ -4,14 +4,11 @@ import 'package:flutter_menu_app/views/IHome.dart';
 import 'package:flutter_menu_app/views/ILogin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'controller/userController.dart';
-
-
  void  main() async {
    WidgetsFlutterBinding.ensureInitialized();
   Widget _home;
   SharedPreferences _prefs = await SharedPreferences.getInstance();
-  final String _accessToken=_prefs.getString("access_token");
+  final String _accessToken=_prefs.getString("accessToken");
   if(_accessToken==null){
     _home=ILogin();
   }else{

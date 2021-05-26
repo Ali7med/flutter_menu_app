@@ -39,7 +39,7 @@ class UserApi {
         if (_response.statusCode == 200) {
       var result = jsonDecode(_response.body);
       return LoginResponse(
-          result['ID'], result['Name'], result['access_token']);
+          result['id'], result['name'], result['accessToken']);
     } else if (_response.statusCode == 401) {
       return null;
     }
@@ -58,14 +58,14 @@ class UserApi {
     if (_response.statusCode == 200) {
       var result = jsonDecode(_response.body);
       return LoginResponse(
-          result['ID'], result['Name'], result['access_token']);
+          result['id'], result['name'], result['accessToken']);
     } else if (_response.statusCode == 401) {
       return null;
     }
   }
 
   // ignore: missing_return
-  Future<bool> logout() async {
-    return Utilities.removeKey('access_token');
+  static Future <bool> logout() async {
+    return Utilities.removeKey('accessToken');
   }
 }

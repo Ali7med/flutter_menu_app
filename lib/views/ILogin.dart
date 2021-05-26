@@ -27,7 +27,7 @@ class _ILoginState extends State<ILogin> {
       appBar: AppBar(
         title: Text("Login"),
       ),
-      body: Page(),
+      body: page(),
       drawer: Drawer(
         child: DrawerPage(),
       ),
@@ -35,7 +35,7 @@ class _ILoginState extends State<ILogin> {
   }
 
 
-  Widget Page() {
+  Widget page() {
     return SingleChildScrollView(
         child: Container(
       padding: EdgeInsets.all(40),
@@ -46,12 +46,12 @@ class _ILoginState extends State<ILogin> {
           children: <Widget>[
             welcomeText(),
             email(),
-            specar(10),
+            space(10),
             password(),
-            specar(40),
+            space(40),
             showLoading(context),
             showMessageError(context),
-            specar(40),
+            space(40),
             submitButton(),
             showRegister(),
           ],
@@ -103,6 +103,7 @@ class _ILoginState extends State<ILogin> {
         } else if (pass.length < 3) {
           return 'Must a password more then 3 chars';
         }
+        return null;
       },
     );
   }
@@ -124,8 +125,8 @@ class _ILoginState extends State<ILogin> {
   Widget showMessageError(BuildContext context) {
     return ValueListenableBuilder(
         valueListenable: _messageError,
-        builder: (context, _messsage, child) {
-          if (_messageError == '') {
+        builder: (context, _message, child) {
+          if (_messageError.toString()=='') {
             return Container();
           } else {
             return Center(
@@ -138,7 +139,7 @@ class _ILoginState extends State<ILogin> {
         });
   }
 
-  Widget specar(double size) {
+  Widget space(double size) {
     return SizedBox(
       height: size,
     );
@@ -177,7 +178,7 @@ class _ILoginState extends State<ILogin> {
   }
 
   Widget showRegister() {
-    return FlatButton(
+    return TextButton(
         onPressed: () {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => IRegister()));

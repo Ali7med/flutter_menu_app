@@ -37,7 +37,7 @@ class _ICategoryState extends State<ICategory> {
 
   Widget page(BuildContext context) {
     return FutureBuilder(
-      future: categoryController.getCategoryByLanguageID(language.Id),
+      future: categoryController.getCategoryByLanguageID(language.id),
       builder: (context, AsyncSnapshot<List<Category>> snap) {
         if (snap.connectionState == ConnectionState.waiting) {
           return Container(
@@ -58,12 +58,12 @@ class _ICategoryState extends State<ICategory> {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(
-                  snap.data[index].Name,
+                  snap.data[index].name,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
                 subtitle: Text(
-                  snap.data[index].Description,
+                  snap.data[index].description,
                   textAlign: TextAlign.center,
                 ),
                 onTap: () {

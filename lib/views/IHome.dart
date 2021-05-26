@@ -56,8 +56,7 @@ class _IHomeState extends State<IHome> {
           );
         } else {
           if (snap.data.length == 0) {
-            var user = UserController();
-            user.logout();
+            UserController.logout();
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => ILogin()));
             return Container(child: Text('NoAuthentication'));
@@ -71,13 +70,13 @@ class _IHomeState extends State<IHome> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        snap.data[index].Name,
+                        snap.data[index].name,
                         style: TextStyle(fontSize: 20),
                       )
                     ],
                   ),
                   subtitle: Text(
-                    snap.data[index].Description,
+                    snap.data[index].note,
                     textAlign: TextAlign.center,
                   ),
                   onTap: () {

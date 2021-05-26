@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 
 class UtilitiesApi {
   static const String BaseUrl = "http://192.168.0.101/MenuApp/public/api";
+  //static const String BaseUrl = "http://192.168.88.69/MenuApp/public/api";
   static const String LoginUrl = BaseUrl + "/login";
   static const String RegisterUrl = BaseUrl + "/register";
   static const String GetUsers = BaseUrl + "/getUsers";

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../ICheckout.dart';
 import '../IHome.dart';
 
 AppBar makeAppBar(BuildContext context , String title){
@@ -27,6 +28,9 @@ AppBar makeAppBar(BuildContext context , String title){
         ], child: Icon(Icons.home)),
         padding: EdgeInsets.only(right: 10),
       ),
-    ],
+      IconButton(onPressed: ()
+      {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) =>ICheckOut()));
+      }, icon: Icon(Icons.article_outlined , color: Colors.red,))    ],
   );
 }

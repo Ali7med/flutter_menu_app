@@ -59,7 +59,7 @@ class _DrawerPageState extends State<DrawerPage> {
     return ListTile(
       title: Text('Logout'),
       onTap: () async {
-            await _userController.logout()?islogin=false:islogin=true ; print(islogin);
+            await UserController.logout()?islogin=false:islogin=true ; print(islogin);
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => ILogin()));
       },
@@ -142,11 +142,10 @@ Widget Login(context) {
   );
 }
 Widget Logout(context) {
-  UserController _userController = UserController();
   return ListTile(
     title: Text('Logout'),
     onTap: () async {
-      await _userController.logout();
+      await UserController.logout();
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => ILogin()));
     },

@@ -33,11 +33,11 @@ class UserController {
   Future<LoginResponse> login(LoginDTO loginDTO) async {
     LoginResponse result = await _userAPI.login(loginDTO);
     if (result != null) {
-      Utilities.storeKey(Utilities.Access_token, result.access_token);
-      Utilities.storeKey(Utilities.Access_ID, result.ID.toString());
-      Utilities.storeKey(Utilities.Access_Name, result.Name);
-      setUserID(id: result.ID.toString());
-      setUserName(name: result.Name);
+      Utilities.storeKey(Utilities.CurrentUserMap['accessToken'], result.accessToken);
+      Utilities.storeKey(Utilities.CurrentUserMap['accessId'], result.id.toString());
+      Utilities.storeKey(Utilities.CurrentUserMap['accessName'], result.name);
+      setUserID(id: result.id.toString());
+      setUserName(name: result.name);
     }
     return result;
   }
@@ -45,9 +45,9 @@ class UserController {
   Future<LoginResponse> register(RegisterDTO registerDTO) async {
     LoginResponse result = await _userAPI.register(registerDTO);
     if (result != null) {
-      Utilities.storeKey(Utilities.Access_token, result.access_token);
-      setUserID(id: result.ID.toString());
-      setUserName(name: result.Name);
+      Utilities.storeKey(Utilities.accessToken, result.accessToken);
+      setUserID(id: result.id.toString());
+      setUserName(name: result.name);
     }
     return result;
   }
@@ -57,9 +57,9 @@ class UserController {
     return false;
   }
 
-  Future<bool> logout() {
+  static Future<bool> logout() {
     setUserID(id: null);
     setUserName(name: null);
-    return _userAPI.logout();
+    return UserApi.logout();
   }
 }
